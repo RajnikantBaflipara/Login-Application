@@ -1,0 +1,36 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="imgcontainer img.avatar">
+      <img src="assets/img/user.png" id="icon" alt="User Icon" />
+    </div>
+    <!-- Login Form -->
+    <form class="form-horizontal" [formGroup]="loginForm" #LoginInformation (ngSubmit)="LoginForm(LoginInformation)">
+      <input if="f.name" type="text" placeholder="Enter Username" formControlName="name" required>
+      <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
+        <div *ngIf="f.name.errors.required">
+          Name is Required
+        </div>
+        <div *ngIf="f.name.errors.minlength">
+          Name must be at least 4 character long.
+        </div>
+      </div>
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
