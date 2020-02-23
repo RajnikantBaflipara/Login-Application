@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // import Http module  
-import { HttpModule} from '@angular/http';
+import { HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 // import module for Routing.  
 import { RouterModule } from '@angular/router';  
+import { WebReqInterceptor } from './Interceptor/web-req.interceptor';
 // import ReactiveFormsModule for reactive form  
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,7 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,  
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([  
       {  
@@ -37,7 +38,9 @@ import { HomeComponent } from './home/home.component';
       }
     ])  
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: WebReqInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
